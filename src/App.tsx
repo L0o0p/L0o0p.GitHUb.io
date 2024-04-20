@@ -10,6 +10,7 @@ import { Menu } from './component/Menu'
 function App() {
   const [section, setSection] = useState(0);
   const [menuOpened, setMenuOpened] = useState(false);
+  // const onContactMe = () => { setSection(); console.log(section) }
 
   return (
     <>
@@ -20,7 +21,9 @@ function App() {
             <ThreeD section={section} menuOpened={menuOpened} />
           </Scroll>
           <Scroll html>
-            <Interface />
+            <Interface
+              onSectionChange={setSection}
+            />
           </Scroll>
         </ScrollControls>
       </Canvas>

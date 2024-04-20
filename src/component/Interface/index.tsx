@@ -18,10 +18,14 @@ const Section = (props: SectionProps) => {
     )
 }
 
-export const Interface = () => {
+interface InterfaceProps {
+    onSectionChange: (index: number) => void;
+}
+export const Interface = (props: InterfaceProps) => {
+    const { onSectionChange } = props
     return (
         <div className={"flex flex-col items-center w-screen"}>
-            < HomeSection />
+            < HomeSection onSectionChange={onSectionChange} />
             <SkillsSection />
             <ProjectsSection />
             <ContactMeSection />
@@ -29,7 +33,8 @@ export const Interface = () => {
     )
 }
 
-const HomeSection = () => {
+const HomeSection = ({ onSectionChange }: InterfaceProps) => {
+    const onChangeSection = () => { onSectionChange(3) }
     return (
         <Section>
             {/* 标题 */}
@@ -60,6 +65,7 @@ const HomeSection = () => {
             </motion.p>
             {/* 按钮 */}
             <motion.button
+                onClick={onChangeSection}
                 className="bg-indigo-600 text-white py-4 px-8 round-lg font-bold text-lg mt-16 font-tilt"
                 initial={{
                     opacity: 0,
