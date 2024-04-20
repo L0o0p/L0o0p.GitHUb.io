@@ -4,6 +4,7 @@ import { atom, useAtom } from "jotai"
 import { motion } from "framer-motion-3d"
 import { useEffect, useRef } from "react"
 import { animate, useMotionValue } from "framer-motion"
+import { Material, Mesh } from "three"
 
 // 图片
 export const items = [
@@ -54,7 +55,7 @@ const ThreeDGalleryItem = (props: ThreeDGalleryItemProps) => {
     const { item, highlighted } = props // 图片编号
     const imageSize: number | [number, number] | undefined = [0.5, 0.5] //图片大小
     const frameSize = 1.2 //画框大小
-    const background = useRef<ThreeElements.mesh>()//将画框指定为一个ref
+    const background = useRef<Mesh>(null)//将画框指定为一个ref
     const bgOpacity = useMotionValue(0.4) //定义一个可变的变量，用于控制透明度
 
     // 背景随着选中态变更而变更
@@ -64,7 +65,18 @@ const ThreeDGalleryItem = (props: ThreeDGalleryItemProps) => {
 
     //对于每一帧，实时接收这个透明度的值
     useFrame(() => {
-        background.current.material.opacity = bgOpacity.get()
+        if (background.current?.material) {
+            const { material } = background.current;
+
+            if (Array.isArray(material)) {
+                material.forEach((mat: Material) => {
+                    mat.opacity = bgOpacity.get();
+                });
+            } else {
+                (material as Material).opacity = bgOpacity.get();
+            }
+        }
+
     })
 
     return (

@@ -19,13 +19,13 @@ export const ThreeD = (props: Props) => {
     const data = useScroll()
     const [cAnimation, setCAnimation] = useState('Typing')
     const { viewport } = useThree()
-    const cameraPositionX = useMotionValue(null);
-    const cameraLookAtX = useMotionValue(null);
+    const cameraPositionX = useMotionValue(0);
+    const cameraLookAtX = useMotionValue(0);
     const { menuOpened } = props
 
     useFrame((state) => {
         // 这里是将data.scroll的值乘以data.pages的值，得到当前的section
-        let curSection = Math.floor(data.scroll.current * data.pages)
+        let curSection = Math.floor(data.offset * data.pages)
         // 如果当前的sectionB和上一次的sectionB不一样，就设置sectionB
         if (curSection !== section) {
             setSection(curSection)

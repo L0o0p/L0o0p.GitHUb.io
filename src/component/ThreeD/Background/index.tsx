@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 
 export const Background = () => {
-    const material = useRef<THREE.MeshStandardMaterial | undefined>()
+    const material = useRef<THREE.MeshBasicMaterial | null>(null)
     const color = useRef({
         color: '#b9bcff'
     })
@@ -14,7 +14,7 @@ export const Background = () => {
 
     useFrame(() => {
         if (tl.current) {
-            tl.current.progress(data.scroll.current);
+            tl.current.progress(data.offset);
         }
         if (material.current) {
             material.current.color.set(color.current.color); // 使用 .set 方法更新颜色

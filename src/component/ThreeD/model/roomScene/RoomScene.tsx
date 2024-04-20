@@ -6,9 +6,15 @@ Command: npx gltfjsx@6.2.16 ./public/scenes/roomScene.gltf -K -k
 // import React, { useRef } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+import { Mesh } from 'three';
 
-export const RoomScene = (props) => {
-  const { nodes, materials } = useGLTF('/scenes/roomScene.gltf')
+interface ModelNodes {
+  [name: string]: Mesh;
+}
+
+export const RoomScene = () => {
+  const { nodes } = useGLTF('/scenes/roomScene.gltf') as unknown as { nodes: ModelNodes };
+  const { materials } = useGLTF('/scenes/roomScene.gltf')
   // load贴图文件
   const texture = useTexture('/scenes/roomScene.png')
   // blender导出的时候默认flipY，可能导致mapping不正确，这里给他反回来
@@ -22,7 +28,7 @@ export const RoomScene = (props) => {
     <group
       scale={1.25}
       rotation={[0, Math.PI / 2, 0]}
-      {...props}
+      // {...props}
       dispose={null}>
       <group name="Scene">
         <group name="RootNode" position={[-0.812, 0, 1.105]}>
