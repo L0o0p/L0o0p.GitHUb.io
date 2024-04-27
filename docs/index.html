@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React + TS</title>
   <style>/*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 *//*
@@ -507,266 +509,51 @@ video {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
-    .visible {
-  visibility: visible;
+    .container {
+  width: 100%;
 }
-    .fixed {
-  position: fixed;
+    @media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+    @media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+    @media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+    @media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+    @media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
 }
     .absolute {
   position: absolute;
 }
-    .bottom-0 {
-  bottom: 0px;
-}
-    .right-0 {
-  right: 0px;
-}
-    .right-12 {
-  right: 3rem;
-}
-    .top-0 {
-  top: 0px;
-}
-    .top-12 {
-  top: 3rem;
-}
-    .z-10 {
-  z-index: 10;
-}
-    .z-20 {
-  z-index: 20;
-}
-    .mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-    .my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-    .mt-16 {
-  margin-top: 4rem;
-}
-    .mt-2 {
-  margin-top: 0.5rem;
-}
-    .mt-4 {
-  margin-top: 1rem;
-}
-    .mt-8 {
-  margin-top: 2rem;
-}
-    .flex {
-  display: flex;
-}
     .hidden {
   display: none;
 }
-    .h-0 {
-  height: 0px;
-}
-    .h-0\.5 {
-  height: 0.125rem;
-}
-    .h-11 {
-  height: 2.75rem;
-}
-    .h-2 {
-  height: 0.5rem;
-}
-    .h-full {
-  height: 100%;
-}
-    .h-screen {
-  height: 100vh;
-}
-    .w-0 {
-  width: 0px;
-}
-    .w-11 {
-  width: 2.75rem;
-}
-    .w-64 {
-  width: 16rem;
-}
-    .w-80 {
-  width: 20rem;
-}
-    .w-full {
-  width: 100%;
-}
-    .w-screen {
-  width: 100vw;
-}
-    .max-w-screen-2xl {
-  max-width: 1536px;
-}
-    .flex-1 {
-  flex: 1 1 0%;
-}
-    .translate-y-0 {
-  --tw-translate-y: 0px;
+    .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-    .translate-y-0\.5 {
-  --tw-translate-y: 0.125rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-    .-rotate-45 {
-  --tw-rotate: -45deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-    .rotate-45 {
-  --tw-rotate: 45deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-    .cursor-pointer {
-  cursor: pointer;
-}
-    .flex-col {
-  flex-direction: column;
-}
-    .items-start {
-  align-items: flex-start;
-}
-    .items-center {
-  align-items: center;
-}
-    .justify-center {
-  justify-content: center;
-}
-    .gap-6 {
-  gap: 1.5rem;
-}
-    .gap-8 {
-  gap: 2rem;
-}
-    .space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-    .overflow-hidden {
-  overflow: hidden;
-}
-    .rounded-full {
-  border-radius: 9999px;
-}
-    .rounded-md {
-  border-radius: 0.375rem;
-}
-    .bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-    .bg-indigo-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
-    .bg-indigo-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-    .bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-    .p-3 {
-  padding: 0.75rem;
-}
-    .p-8 {
-  padding: 2rem;
-}
-    .px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-    .px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-    .py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-    .text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-    .text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-    .text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-    .text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-    .text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-    .font-bold {
-  font-weight: 700;
-}
-    .font-extrabold {
-  font-weight: 800;
-}
-    .italic {
-  font-style: italic;
-}
-    .leading-snug {
-  line-height: 1.375;
-}
-    .text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
-}
-    .text-gray-800 {
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-    .text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-    .transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-    .transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-    .transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-    body {
-      background-color: #f8f8f8;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .hover\:text-indigo-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(79 70 229 / var(--tw-text-opacity));
 }
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + React + TS</title>
-  <script type="module" crossorigin src="/assets/index-DCdeExOy.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-D9zFhOld.css">
+  <script type="module" crossorigin src="/assets/index-o3LNa9Jq.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-rggzu1Uu.css">
 </head>
 
 <body>
