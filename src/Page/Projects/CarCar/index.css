@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f0f0f0;
+}
+
+.layout {
+  position: absolute;
+  z-index: 10;
+  /* 确保按钮在 canvas 上方 */
+  top: 80px;
+  /* 距离容器顶部 10px */
+  left: 30px;
+  /* 距离容器右边 10px */
+  background-color: rgb(7, 5, 23);
+  height: 50px;
+  width: 120px;
+  padding: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #f0f0f0;
+  cursor: pointer;
+}
