@@ -31,8 +31,8 @@ export const ThreeD = (props: Props) => {
     // const characterContainerAboutRef = useRef<any>(null)
     const [characterAnimation, setCharacterAnimation] = useState('Typing')
     const data = useScroll()
-    const cameraPositionX = useMotionValue(null);
-    const cameraLookAtX = useMotionValue(null);
+    const cameraPositionX = useMotionValue(0);
+    const cameraLookAtX = useMotionValue(0);
     useEffect(
         () => {
             setCharacterAnimation('FallAnimation')
@@ -52,7 +52,7 @@ export const ThreeD = (props: Props) => {
     }, [menuOpened])
 
     useFrame((state) => {
-        let curSectionB = Math.floor(data.scroll.current * data.pages)// 这里是将data.scroll的值乘以data.pages的值，得到当前的section
+        let curSectionB = Math.floor(data.offset * data.pages)// 这里是将data.scroll的值乘以data.pages的值，得到当前的section
 
         if (curSectionB > 3) {
             curSectionB = 3
@@ -69,7 +69,7 @@ export const ThreeD = (props: Props) => {
     return (
         <>
             <Background />
-            <ambientLight intensity={1.2} />
+            <ambientLight intensity={3} />
             {/* <OrbitControls /> */}
             {/* <ContactShadows
                 opacity={0.42}
@@ -177,5 +177,3 @@ export const ThreeD = (props: Props) => {
 
     )
 }
-
-

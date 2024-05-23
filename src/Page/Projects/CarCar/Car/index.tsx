@@ -4,12 +4,16 @@ import CarRest from './CarRest'
 import CarLdoor from './CarLdoor'
 import CarRdoor from './CarRdoor'
 import { useState } from 'react'
-import { useSpring, a } from '@react-spring/three';
+import { useSpring } from '@react-spring/three';
 import { animated } from '@react-spring/three';
 
 // import { M } from 'vite/dist/node/types.d-FdqQ54oU'
+interface CarProps {
+    onLight?: boolean;
+    onOneClick?: () => void;
+}
 
-export const Car = (props) => {
+export const Car = (props: CarProps) => {
     const [clicked, click] = useState(false)
     const [clickedL, clickL] = useState(false)
 
@@ -21,12 +25,20 @@ export const Car = (props) => {
     const ya = 0;
     const za = 0.8;
 
-    const { rotation: rotationR } = useSpring({
-        rotation: clicked ? [0, Math.PI / 3, 0] : [0, 0, 0],
+    const { rotX: rotXR, rotY: rotYR, rotZ: rotZR } = useSpring({
+        rotX: clicked ? 0 : 0,
+        rotY: clicked ? Math.PI / 3 : 0,
+        rotZ: clicked ? 0 : 0,
+        config: { mass: 1, tension: 210, friction: 20 },
     });
-    const { rotation: rotationL } = useSpring({
-        rotation: clickedL ? [0, -Math.PI / 3, 0] : [0, 0, 0],
+    const { rotX: rotXL, rotY: rotYL, rotZ: rotZL } = useSpring({
+        rotX: clickedL ? 0 : 0,
+        rotY: clickedL ? -Math.PI / 3 : 0,
+        rotZ: clickedL ? 0 : 0,
+        config: { mass: 1, tension: 210, friction: 20 },
     });
+
+
 
     // eslint-disable-next-line react/prop-types
     const { onLight } = props
@@ -43,27 +55,35 @@ export const Car = (props) => {
     return (
         <>
             {/* 右门 */}
-            <a.group position={[0 - x, 0 - y, 0 - z]}
-                rotation={rotationR}
-                onClick={() => { click(!clicked); onCarClick() }}
+            <animated.group
+                position={[0 - x, 0 - y, 0 - z]}
+                rotation-x={rotXR}
+                rotation-y={rotYR}
+                rotation-z={rotZR}
+                onClick={() => { click(!clicked); onCarClick(); }}
             >
+
                 {/* eslint-disable-next-line react/no-unknown-property */}
                 <group position={[0 + x, 0 + y, 0 + z]}>
                     <CarRdoor />
                 </group>
-            </a.group>
+            </animated.group>
 
             {/* 左门 */}
-            <a.group position={[0 + xa, 0 + ya, 0 + za]}
-                rotation={rotationL}
-                onClick={() => { clickL(!clickedL); onCarClick() }}
+            <animated.group
+                position={[0 + xa, 0 + ya, 0 + za]}
+                rotation-x={rotXL}
+                rotation-y={rotYL}
+                rotation-z={rotZL}
+                onClick={() => { clickL(!clickedL); onCarClick(); }}
             >
+
 
                 {/* eslint-disable-next-line react/no-unknown-property */}
                 <group position={[0 - xa, 0 - ya, 0 - za]}>
                     <CarLdoor />
                 </group>
-            </a.group>
+            </animated.group>
 
             {/* 车身 */}
             <animated.group

@@ -5,16 +5,17 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 
 export const Background = () => {
-    const material = useRef()
+    const material = useRef<THREE.MeshBasicMaterial>(null);
     const color = useRef({
         color: '#b9bcff'
     })
     const data = useScroll()
-    const tl = useRef()
+    const tl = useRef<gsap.core.Timeline | null>(null); // 创建一个 GSAP 时间线实例
+
 
     useFrame(() => {
         if (tl.current) {
-            tl.current.progress(data.scroll.current);
+            tl.current.progress(data.offset);
         }
         if (material.current) {
             material.current.color.set(color.current.color); // 使用 .set 方法更新颜色

@@ -7,13 +7,39 @@ Source: https://sketchfab.com/3d-models/white-round-exhibition-gallery-a443b8a0a
 Title: White round exhibition gallery
 */
 
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { Mesh } from 'three';
 
-export default function ETwo(props) {
-    const { nodes, materials } = useGLTF('/carCar/white_round_exhibition_gallery.glb')
+interface GLTFResult {
+    nodes: {
+        Cylinder__0: Mesh
+        Cylinder003__0: Mesh
+        Cylinder004__0: Mesh
+        Cylinder005__0: Mesh
+        Cylinder006__0: Mesh
+        Cylinder007_Material002_0: Mesh
+        Cylinder008_Material002_0: Mesh
+        Cylinder009_Material002_0: Mesh
+        Cylinder010_Material002_0: Mesh
+        Cylinder011_Material004_0: Mesh
+        Cylinder012_Material004_0: Mesh
+        Cylinder013__0: Mesh
+        Cylinder014_Material001_0: Mesh
+        Cylinder015__0: Mesh
+        Cylinder016__0: Mesh
+        Cylinder017__0: Mesh
+        Cylinder018__0: Mesh
+        Torus011__0: Mesh
+        Cylinder001__0: Mesh
+        Cylinder016_Material009_0: Mesh
+    }
+}
+
+export default function ETwo() {
+    const { nodes } = useGLTF('/carCar/white_round_exhibition_gallery.glb') as unknown as GLTFResult
+    const { materials } = useGLTF('/carCar/white_round_exhibition_gallery.glb')
     return (
-        <group {...props} dispose={null}>
+        <group dispose={null}>
             <group scale={0.01}>
                 <mesh geometry={nodes.Cylinder__0.geometry} material={materials.Cylinder__0} rotation={[-Math.PI / 2, 0, 0]} scale={[1327.45, 1327.45, 501.949]} />
                 <mesh geometry={nodes.Cylinder003__0.geometry} material={materials.Cylinder__0} position={[0, 46.149, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1327.45, 1327.45, 501.949]} />

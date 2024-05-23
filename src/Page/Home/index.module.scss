@@ -1,61 +1,123 @@
-.homeContainer {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-
-    .textContainer {
-        margin-left: 160px;
-        max-width: 800px;
+@media (max-height: 800px) {
+    .homeContainer {
+        height: 100%;
+        width: 100%;
         display: flex;
-        justify-content: center;
-        flex-direction: column;
-        gap: 20px;
+        justify-content: none;
+        align-items: center;
 
-        .tagline {
-            font-size: 20px;
-            font-weight: 600;
-            background-color: lightblue;
-            border: 2px solid rgb(165, 218, 236);
-            color: white;
-            padding: 12px;
-            max-width: 250px;
-            text-align: center;
-        }
-
-        .bigTitle {
-            font-size: 70px;
-            font-weight: 700;
+        .textContainer {
+            margin-left: 10px;
+            max-width: 800px;
             display: flex;
+            justify-content: center;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+            gap: 16px !important;
 
-        .description {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            // 超细的字体
-            font-weight: 100;
-        }
+            .tagline {
+                font-size: 16px !important;
+                font-weight: 600;
+                background-color: lightblue;
+                border: 2px solid rgb(165, 218, 236);
+                color: white;
+                padding: 12px;
+                max-width: 250px;
+                text-align: center;
+            }
 
-        .aniButton {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            width: 180px;
-            font-weight: 600;
+            .bigTitle {
+                font-size: 70px;
+                font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                gap: 4px !important;
+                max-width: 360px;
+                // 超细的字体
+                font-weight: 100;
+            }
+
+            .aniButton {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                width: 180px;
+                font-weight: 600;
+            }
         }
     }
 }
 
-@media screen and (max-width: 1336px) {
+@media (max-width:1079px) {
+    .homeContainer {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: none;
+        align-items: center;
+
+        .textContainer {
+            margin-left: 10px;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 40px;
+
+            .tagline {
+                font-size: 20px;
+                font-weight: 600;
+                background-color: lightblue;
+                border: 2px solid rgb(165, 218, 236);
+                color: white;
+                padding: 12px;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .bigTitle {
+                font-size: 70px;
+                font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                // 超细的字体
+                font-weight: 100;
+            }
+
+            .aniButton {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                width: 180px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@media (min-width:1080px) {
     .homeContainer {
         height: 100%;
         width: 100%;
@@ -64,12 +126,52 @@
         align-items: center;
 
         .textContainer {
-            margin-left: 80px;
+            margin-left: 160px;
             max-width: 800px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             gap: 20px;
+
+            .tagline {
+                font-size: 20px;
+                font-weight: 600;
+                background-color: lightblue;
+                border: 2px solid rgb(165, 218, 236);
+                color: white;
+                padding: 12px;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .bigTitle {
+                font-size: 70px;
+                font-weight: 700;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                // 超细的字体
+                font-weight: 100;
+            }
+
+            .aniButton {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                width: 180px;
+                font-weight: 600;
+            }
         }
     }
 }

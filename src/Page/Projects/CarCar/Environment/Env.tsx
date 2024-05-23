@@ -7,18 +7,15 @@ Source: https://sketchfab.com/3d-models/vr-exhibition-gallery-baked-ee6f3b0d9db1
 Title: VR exhibition gallery baked
 */
 
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import EOne from './EOne'
 import ETwo from './ETwo'
 import { Environment } from './Environment'
 
-export default function Env(props: any) {
+export default function Env() {
 
     return (
         <>
             <directionalLight color="red" position={[0, 0, 5]} intensity={1} />
-            {/* <EOne /> */}
             <ETwo />
             <Environment />
         </>

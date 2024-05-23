@@ -5,6 +5,7 @@ import { motion } from "framer-motion-3d"
 import { atom, useAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import { animate, useMotionValue } from "framer-motion"
+import * as THREE from 'three'
 
 export const projects = [
     {
@@ -51,7 +52,7 @@ interface ProjectProps {
 
 const Project = (props: ProjectProps) => {
     const { project, hightlighted } = props
-    const background = useRef<ThreeElements.mesh>()
+    const background = useRef<THREE.Mesh>(null)
     const bgOpacity = useMotionValue(0.4)
 
     useEffect(() => {
@@ -59,7 +60,10 @@ const Project = (props: ProjectProps) => {
     }, [hightlighted])// 背景随着被选中项目变更而变更
 
     useFrame(() => {
-        background.current.material.opacity = bgOpacity.get()
+        if (background.current) {
+            // 断言background.current.material 是 Material 类型（只有一个材质）而不是 Material[]
+            (background.current.material as THREE.Material).opacity = bgOpacity.get()
+        }
     })
 
     return (

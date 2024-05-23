@@ -1,54 +1,122 @@
-.navContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    border: 2px solid #e2ebf0;
-}
-
-.tabs {
-    display: flex;
-
-    .tab {
-        cursor: pointer;
-        padding: 15px;
-        color: #cfd9df;
-        text-decoration: none;
-        width: 66px;
+@media (max-width:1079px) {
+    .navContainer {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        gap: 20px;
+        border: 2px solid #e2ebf0;
+        position: fixed;
+        width: 100%;
+        background-color: white;
+        z-index: 100;
+    }
 
-        &:hover {
-            background-color: rgb(219, 236, 241); // Example hover color
+    .tabs {
+        display: flex;
+        flex: 1;
+
+        .tab {
+            cursor: pointer;
+            padding: 15px;
+            color: #cfd9df;
+            text-decoration: none;
+            width: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: rgb(219, 236, 241); // Example hover color
+                color: white;
+            }
+        }
+
+
+        .tab.active {
+            background-color: lightblue;
+            color: white;
+        }
+
+        .tabY {
+            cursor: pointer;
+            padding: 15px;
+            color: #cfd9df;
+
+            &:hover {
+                color: lightblue;
+            }
+        }
+
+        .tabY.active {
+            background-color: lightblue;
             color: white;
         }
     }
 
-    .tab.active {
-        background-color: lightblue;
-        color: white;
+    .optional {
+        display: none;
     }
 
-    .tabY {
-        cursor: pointer;
+    .divider {
+        height: 100%;
         padding: 15px;
         color: #cfd9df;
+    }
 
-        &:hover {
-            color: lightblue;
+
+}
+
+@media (min-width: 1080px) {
+
+    .navContainer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        border: 2px solid #e2ebf0;
+    }
+
+    .tabs {
+        display: flex;
+
+        .tab {
+            cursor: pointer;
+            padding: 15px;
+            color: #cfd9df;
+            text-decoration: none;
+            width: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: rgb(219, 236, 241); // Example hover color
+                color: white;
+            }
+        }
+
+        .tab.active {
+            background-color: lightblue;
+            color: white;
+        }
+
+        .tabY {
+            cursor: pointer;
+            padding: 15px;
+            color: #cfd9df;
+
+            &:hover {
+                color: lightblue;
+            }
+        }
+
+        .tabY.active {
+            background-color: lightblue;
+            color: white;
         }
     }
 
-    .tabY.active {
-        background-color: lightblue;
-        color: white;
+    .divider {
+        height: 100%;
+        padding: 15px;
+        color: #cfd9df;
     }
-}
-
-
-
-.divider {
-    height: 100%;
-    padding: 15px;
-    color: #cfd9df;
 }

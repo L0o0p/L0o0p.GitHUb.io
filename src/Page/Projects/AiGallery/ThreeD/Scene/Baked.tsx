@@ -2,15 +2,20 @@
 import { useGLTF, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
-export const Baked = (props) => {
-  const { nodes, materials } = useGLTF('/aiGallery/model/baked.gltf')
-  const texture = useTexture('./aiGallery/model/b.png')
+interface ModelNodes {
+  [name: string]: THREE.Mesh;
+}
+
+export const Baked = () => {
+  const { nodes } = useGLTF('/model/baked.gltf') as unknown as { nodes: ModelNodes };
+  const { materials } = useGLTF('/model/baked.gltf')
+  const texture = useTexture('./model/b.png')
   texture.flipY = false
   const bakedMaterial = new THREE.MeshStandardMaterial(
     { map: texture }
   )
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group name="RootNode" position={[4.626, -0.174, 3.707]} rotation={[0, -1.571, 0]} scale={0.407}>
         <group name="Couch_Medium1" position={[0, 0, 0.281]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
           <mesh name="Couch_Medium1_1" geometry={nodes.Couch_Medium1_1.geometry} material={bakedMaterial} />
@@ -46,4 +51,4 @@ export const Baked = (props) => {
   )
 }
 
-useGLTF.preload('/aiGallery/model/baked.gltf')
+useGLTF.preload('/model/baked.gltf')

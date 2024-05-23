@@ -41,21 +41,21 @@ export const ScrollManager = (props: ScrollManagerProps) => {
         // 这里是使用gsap库来实现滚动动画，这里的scrollTop表示滚动到section的容器的滚动位置
         if (isAnimating.current) {
             // 这里是判断isAnimating的值，如果isAnimating的值为true，表示正在进行滚动动画，则不进行滚动动画
-            lastScroll.current = data.scroll.current// 这里是将lastScroll的值设置为data.scroll的值
+            lastScroll.current = data.offset// 这里是将lastScroll的值设置为data.scroll的值
             return;
         }
 
-        const curSection = Math.floor(data.scroll.current * data.pages)// 这里是将data.scroll的值乘以data.pages的值，得到当前的section
-        if (data.scroll.current > lastScroll.current && curSection === 0) {
+        const curSection = Math.floor(data.offset * data.pages)// 这里是将data.scroll的值乘以data.pages的值，得到当前的section
+        if (data.offset > lastScroll.current && curSection === 0) {
             onSectionChange(1);
         }
         if (
-            data.scroll.current < lastScroll.current &&
-            data.scroll.current < 1 / (data.pages - 1)
+            data.offset < lastScroll.current &&
+            data.offset < 1 / (data.pages - 1)
         ) {
             onSectionChange(0);
         }
-        lastScroll.current = data.scroll.current;
+        lastScroll.current = data.offset;
     });
 
     return null;

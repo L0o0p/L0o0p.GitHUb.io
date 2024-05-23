@@ -27,7 +27,7 @@ export const Projects = () => {
                                 to={projects[index].link}
                                 key={index}
                                 className={styles.item}
-                                onClick={() => { setShow(true); console.log(index, show); }}
+                                onClick={() => { setShow(true); console.log(index, item, show); }}
                             >
                                 <div className={styles.pImage}>
                                     <img src={projects[index].img} />

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { setProjectShow, setTab } from '../Store';
 import { useAtom } from 'jotai';
 import { Avatar } from './Avatar';
-
+import cx from 'classnames';
 export const NavBar = () => {
     const tabsX = ['Home', 'Projects', 'Chat'];
     const tabsY = ['Login', 'Setting'];
@@ -48,7 +48,7 @@ export const NavBar = () => {
                     ))}
 
                 </div>
-                <div className={styles.tabs}>
+                <div className={cx(styles.tabs, styles.optional)}>
                     <div className={styles.divider}>|</div>
                     <div className={styles.tabs}>
                         {tabsY.map(tab => (

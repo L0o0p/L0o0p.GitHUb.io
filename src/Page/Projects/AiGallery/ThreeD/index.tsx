@@ -1,9 +1,8 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Scene } from "./Scene"
-import { OrbitControls, Sky, Image, PerspectiveCamera, Text } from "@react-three/drei"
+import { Sky, PerspectiveCamera, Text } from "@react-three/drei"
 import { useEffect, useRef, useState } from "react"
-import { PlaneGeometry, Vector3 } from "three"
-import { Baked } from "./Scene/Baked"
+import { Vector3 } from "three"
 import { motion } from "framer-motion-3d"
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 // import { Model } from "./Scene/AiGalleryBaked"
@@ -25,7 +24,7 @@ export const ThreeD = () => {
             <ambientLight intensity={1.5 * Math.PI} />
             <Sky />
             <Scene />
-            {/* <Baked /> */}
+            {/* <Baked /> */}ya
             <InteractiveFloor />
             {/* <CameraWatcher /> */}
             <CameraControls />
@@ -61,7 +60,7 @@ function CameraControls() {
     }, [camera])
 
     useEffect(() => {
-        const onKeyDown = (event) => {
+        const onKeyDown = (event: { key: any }) => {
             switch (event.key) {
                 case 'w': moveState.current.forward = true; break;
                 case 's': moveState.current.backward = true; break;
@@ -73,7 +72,7 @@ function CameraControls() {
             }
         };
 
-        const onKeyUp = (event) => {
+        const onKeyUp = (event: { key: any }) => {
             switch (event.key) {
                 case 'w': moveState.current.forward = false; break;
                 case 's': moveState.current.backward = false; break;
@@ -124,7 +123,6 @@ function InteractiveFloor() {
     const { camera } = useThree();
     const [isOverTarget, setIsOverTarget] = useState(false);
     const targetPosition = new Vector3(0 - 1.800, 1, 2); // 目标区域的中心位置
-    const originPosition = new Vector3(0 + 4, 1, 2); // 目标区域的中心位置
     const range = 0.5; // 考虑范围的大小，1.5单位范围内有效
 
     useFrame(() => {
@@ -143,7 +141,7 @@ function InteractiveFloor() {
     });
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: { code: string }) => {
             if (event.code === 'Space' && isOverTarget) {
                 window.location.href = "https://ai.cytelab.net/login"
             }

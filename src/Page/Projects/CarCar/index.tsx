@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import './index.css';
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from 'three';
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 // import { useSpring, animated, config } from '@react-spring/three';
 import TWEEN from '@tweenjs/tween.js'
@@ -20,41 +19,41 @@ function Tween() {
     })
     return null
 }
-function InteractiveObject(props: any) {
-    const backObjectRef = useRef<any>();
-    const { camera, raycaster, pointer, size } = useThree();
-    const { onBackObjectClick } = props
+// function InteractiveObject(props: any) {
+//     const backObjectRef = useRef<any>();
+//     const { camera, raycaster, pointer, size } = useThree();
+//     const { onBackObjectClick } = props
 
-    const handlePointerDown = (event: any) => {
-        // 更新鼠标位置，event.clientX和event.clientY是屏幕坐标
-        // 将屏幕坐标转换到-1到1的范围内的标准化设备坐标 (NDC)
-        // 创建一个新的Vector2来存储NDC坐标
-        const pointer = new THREE.Vector2();
-        pointer.x = ((event.clientX) / size.width) * 2 - 1;
-        pointer.y = -((event.clientY) / size.height) * 2 + 1;
+//     const handlePointerDown = (event: any) => {
+//         // 更新鼠标位置，event.clientX和event.clientY是屏幕坐标
+//         // 将屏幕坐标转换到-1到1的范围内的标准化设备坐标 (NDC)
+//         // 创建一个新的Vector2来存储NDC坐标
+//         const pointer = new THREE.Vector2();
+//         pointer.x = ((event.clientX) / size.width) * 2 - 1;
+//         pointer.y = -((event.clientY) / size.height) * 2 + 1;
 
-        // 使用THREE.Vector2实例作为参数
-        raycaster.setFromCamera(pointer, camera);
+//         // 使用THREE.Vector2实例作为参数
+//         raycaster.setFromCamera(pointer, camera);
 
-        // 获取与射线相交的所有对象
-        const intersects = raycaster.intersectObjects([backObjectRef.current], true);
+//         // 获取与射线相交的所有对象
+//         const intersects = raycaster.intersectObjects([backObjectRef.current], true);
 
-        // 检查是否我们的特定对象被击中了
-        if (intersects.length > 0) {
-            onBackObjectClick?.();
-        }
-    };
+//         // 检查是否我们的特定对象被击中了
+//         if (intersects.length > 0) {
+//             onBackObjectClick?.();
+//         }
+//     };
 
 
 
-    return (
-        <mesh ref={backObjectRef} position={[0, 1, 0]} onPointerDown={handlePointerDown}>
-            {/* ...mesh的子组件，如geometry和material */}
-            <boxGeometry />
-            <meshStandardMaterial />
-        </mesh>
-    );
-}
+//     return (
+//         <mesh ref={backObjectRef} position={[0, 1, 0]} onPointerDown={handlePointerDown}>
+//             {/* ...mesh的子组件，如geometry和material */}
+//             <boxGeometry />
+//             <meshStandardMaterial />
+//         </mesh>
+//     );
+// }
 
 export const CarCar = () => {
     const [active, setActive] = useState(false);

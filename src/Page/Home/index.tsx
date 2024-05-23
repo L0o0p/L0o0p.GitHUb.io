@@ -10,14 +10,34 @@ import { Float } from "../../component/Float";
 
 
 export const Home = () => {
+    const [showFloat, setShowFloat] = useState(window.innerWidth > 1079);
+    useEffect(() => {
+        const handleResize = () => {
+            setShowFloat(window.innerWidth > 1079);
+        };
+        window.addEventListener('resize', handleResize);
+        // 组件卸载时移除事件监听器
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return (
+        <div className={styles.homeContainer}>
+            <TypingText />
+            {showFloat && <Float />}
+        </div>
+    )
+
+}
+
+const TypingText = () => {
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [text, setText] = useState('');
     const [delta, setDelta] = useState(300 - Math.random() * 100);
-    const [index, setIndex] = useState(1);
+    const [, setIndex] = useState(1);
     const toRotate = ["Web Developer", "3D Artist", "Web Designer",];
     const period = 2000;
-    const [activeTabIndex, setActiveTabIndex] = useAtom(setTab); // 初始化为 1，表示第一个标签
+    const [, setActiveTabIndex] = useAtom(setTab); // 初始化为 1，表示第一个标签
     const [hover, setHover] = useState(false);
     // 处理鼠标进入事件
     const handleMouseEnter = () => {
@@ -63,39 +83,34 @@ export const Home = () => {
         }
     }
     return (
-        <>
-            <div className={styles.homeContainer}>
-                <div className={styles.textContainer}>
-                    <span className={styles.tagline}>Welcome to my Portfolio</span>
+        <div className={styles.textContainer}>
+            <span className={styles.tagline}>Welcome to my Portfolio</span>
 
-                    <h1 className={styles.bigTitle}>
-                        <p>
-                            {`Hi! I'm Loop Shen, `}
-                        </p>
-                        <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Web Developer", "3D Artist", "Web Designer", ]'>
-                            <span className="wrap">{text}</span>
-                        </span>
-                    </h1>
-                    <div className={styles.description}>
-                        <p>Go big or go home when it comes to having fun --👻 👻</p>
-                        <p> Party like there’s no tomorrow...HahHah..</p>
-                    </div>
-                    <div
-                        className={styles.aniButton}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        style={{
-                            marginLeft: hover ? '10px' : '0px',
-                            transition: 'margin-left 0.2s ease-in-out, font-style 0.2s ease-in-out',
-                            fontStyle: hover ? 'italic' : 'normal' // 控制字体样式
-                        }}
-                    >
-                        <Link onClick={() => { console.log('Go sightseeing～'); setActiveTabIndex(1) }} to={"/projects"}>Go sightseeing</Link>
-                        <div style={{ marginLeft: hover ? '10px' : '0px', transition: 'margin-left 0.3s ease-in-out' }}><ArrowRightCircle size={25} /></div>
-                    </div>
-                </div>
-            </div >
-            <Float />
-        </>
+            <h1 className={styles.bigTitle}>
+                <p>
+                    {`Hi! I'm Loop Shen, `}
+                </p>
+                <span className="txt-rotate" data-period="1000" data-rotate='[ "Web Developer", "3D Artist", "Web Designer", ]'>
+                    <span className="wrap">{text}</span>
+                </span>
+            </h1>
+            <div className={styles.description}>
+                <p>Go big or go home when it comes to having fun --👻 👻</p>
+                <p> Party like there’s no tomorrow...HahHah..</p>
+            </div>
+            <div
+                className={styles.aniButton}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={{
+                    marginLeft: hover ? '10px' : '0px',
+                    transition: 'margin-left 0.2s ease-in-out, font-style 0.2s ease-in-out',
+                    fontStyle: hover ? 'italic' : 'normal' // 控制字体样式
+                }}
+            >
+                <Link onClick={() => { console.log('Go sightseeing～'); setActiveTabIndex(1) }} to={"/projects"}>Go sightseeing</Link>
+                <div style={{ marginLeft: hover ? '10px' : '0px', transition: 'margin-left 0.3s ease-in-out' }}><ArrowRightCircle size={25} /></div>
+            </div>
+        </div>
     )
 }

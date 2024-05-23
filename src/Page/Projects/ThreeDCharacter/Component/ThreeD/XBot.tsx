@@ -8,15 +8,11 @@ Command: npx gltfjsx@6.2.16 ./public/XBot.glb
 // 始终可见: 某些对象，如环境光源或者背景音乐控制器（尽管它们不是视觉对象），可能需要始终存在于场景中，无论它们的位置如何。
 // 渲染特效: 某些特效可能需要对象始终被渲染，即使它们在视觉上不直接可见，因为它们可能影响其它可见对象的渲染效果（例如光源的光晕效果可能部分在视锥外）。
 
-import React, { useEffect, useRef, useState } from 'react'
-import { useAnimations, useFBX, useGLTF, useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
+import { useEffect, useRef } from 'react'
+import { useAnimations, useFBX, useGLTF } from '@react-three/drei'
 import { useControls } from 'leva';
 import * as THREE from 'three';
 import { MeshBasicMaterial } from 'three';
-import { GroupProps } from '@react-three/fiber';
-import { GLTF } from 'three';
-import { Mesh } from 'three';
 
 
 
@@ -26,24 +22,23 @@ interface XBotProps {
   menuOpened: boolean
   // section: number | string
 }
-// 定义GLTFResult接口，根据你的GLTF结构进行调整
-interface GLTFResult extends GLTF {
+interface GLTFResult {
   nodes: {
-    [name: string]: Mesh;
-  },
+    [name: string]: THREE.Object3D | THREE.SkinnedMesh;
+    Beta_Joints: THREE.SkinnedMesh<THREE.BufferGeometry, THREE.Material | THREE.Material[]>;
+    // 添加其他节点的类型定义
+  };
   materials: {
-    [name: string]: THREE.Material
+    [name: string]: THREE.Material;
   };
 }
 
 export default function XBot(props: XBotProps) {
 
-  const { animation, menuOpened }: XBotProps = props;
-  const data = useScroll()
-  const [section, setSection] = useState(0)
+  const { animation }: XBotProps = props;
 
   // 从GLTF文件加载模型和材质
-  const xBot = useRef<GroupProps>()
+  const xBot = useRef<THREE.Group>(null);
   const { nodes, materials } = useGLTF('/threeDCharacter/models/XBot.glb') as unknown as GLTFResult;
 
   // 从FBX文件加载动画
@@ -64,36 +59,13 @@ export default function XBot(props: XBotProps) {
   // 将动画分配给 ref，以便 drei 的 useAnimations hook 可以访问它们。
   const { actions } = useAnimations([TypingAnimation[0], PrayingAnimation[0], FallAnimation[0], StandingAnimation[0]], xBot);
   // 设置人物是否跟随光标，并根据用户的偏好进行动画切换。
-  const { headFollow, cursorFollow, wireframe } = useControls({
+  const { wireframe } = useControls({
     headFollow: false,
     cursorFollow: false,
     wireframe: false,
   });
   // useFrame hook 用于动画。它每一帧被调用，并允许我们操作场景对象的属性。
-  // 让头部对准光标或镜头的方法定义
-  useFrame((state) => {
-    // 确保 headFollow 是 true
-    if (headFollow && xBot.current) {
-      // 使用可选链（optional chaining）确保不会在 undefined 上调用 lookAt
-      const neck = xBot.current!.getObjectByName('mixamorigNeck')!;
-      if (neck) {
-        neck.lookAt(state.camera.position);
-      } else {
-        console.error('没有找到名为 mixamorigNeck 的对象');
-      }
-    }
-    // 确保 headFollow 是 true
-    if (cursorFollow && xBot.current) {
-      // 使用可选链（optional chaining）确保不会在 undefined 上调用 lookAt
-      const neck = xBot.current.getObjectByName('mixamorigSpine');
-      const target = new THREE.Vector3(state.pointer.x, state.pointer.y, 0);
-      if (neck) {
-        neck.lookAt(target);
-      } else {
-        console.error('没有找到名为 mixamorigSpine 的对象');
-      }
-    }
-  });
+
 
   // 在组件挂载时播放动作 'Praying'，并在组件卸载时重置并停止它。
   useEffect(() => {
@@ -103,7 +75,7 @@ export default function XBot(props: XBotProps) {
   // 在组件挂载时遍历所有子物体并打印出它们的名称。
   useEffect(() => {
     if (xBot.current) {
-      xBot.current?.traverse((object) => {
+      xBot.current.traverse((object) => {
         console.log(object.name); // 打印出所有物体的名称
       });
     }
@@ -118,6 +90,9 @@ export default function XBot(props: XBotProps) {
       }
     });
   }, [wireframe, materials]);
+  const geometry1 = (nodes.Beta_Surface as THREE.SkinnedMesh).geometry;
+  const material1 = materials.Beta_HighLimbsGeoSG3;
+  const skeleton1 = (nodes.Beta_Surface as THREE.SkinnedMesh).skeleton;
 
   return (
     <group rotation={[0, 0, 0]} >
@@ -132,9 +107,9 @@ export default function XBot(props: XBotProps) {
           />
           <skinnedMesh
             frustumCulled={false}
-            geometry={nodes.Beta_Surface.geometry}
-            material={materials.Beta_HighLimbsGeoSG3}
-            skeleton={nodes.Beta_Surface.skeleton}
+            geometry={geometry1}
+            material={material1}
+            skeleton={skeleton1}
           />
         </group>
       </group>
